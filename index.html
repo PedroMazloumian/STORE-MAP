@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BOSS Winter 25</title>
+  <style>
+    :root{
+      --bg:#f4f7fb; --card:#ffffff; --accent:#3b82f6; --muted:#6b7280;
+    }
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial; margin:0; min-height:100vh; background:linear-gradient(180deg,var(--bg),#eef3fb); display:flex; align-items:center; justify-content:center; padding:48px}
+
+    .wrap{max-width:1000px; width:100%; display:grid; gap:20px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+
+    .wrap img{grid-column:1/-1; display:block; margin:0 auto}
+
+    .card{
+      background:var(--card); border-radius:14px; padding:18px; box-shadow:0 6px 18px rgba(30,40,70,0.08); position:relative; overflow:hidden; transition:transform .28s ease, box-shadow .28s ease;
+    }
+    .card:hover{transform:translateY(-6px); box-shadow:0 14px 40px rgba(30,40,70,0.12)}
+
+    .card .thumb{height:140px; border-radius:10px; display:flex; align-items:center; justify-content:center; color:white; font-weight:700; font-size:20px}
+
+    .card[data-id="1"] .thumb { background-color: #000000; }
+    .card[data-id="2"] .thumb { background-color: #D2B48C; }
+    .card[data-id="3"] .thumb { background-color: #28df14; }
+    .wrap article:nth-of-type(4) .thumb { background-color: #FF8C00; }
+    .wrap article:nth-of-type(5) .thumb { background-color: #DC143C; }
+    .wrap article:nth-of-type(6) .thumb { background-color: #808080; }
+    .card h3{margin:12px 0 6px 0; font-size:18px}
+    .card p{margin:0 0 14px 0; color:var(--muted); font-size:14px}
+
+    .btn{
+      display:inline-block; padding:10px 12px; border-radius:10px; background:transparent; border:2px solid var(--accent); color:var(--accent); font-weight:600; cursor:pointer; transition:all .18s ease; text-decoration:none;
+    }
+    .btn:active{transform:scale(.98)}
+
+    /* Expanded overlay */
+    .overlay{
+      position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(8,12,20,0.45); opacity:0; pointer-events:none; transition:opacity .2s ease; z-index:70;
+    }
+    .overlay.open{opacity:1; pointer-events:auto}
+
+    .panel{
+      width:min(780px,96%); max-height:86vh; overflow:auto; background:var(--card); border-radius:14px; box-shadow:0 30px 80px rgba(10,20,40,0.35); padding:22px; transform:translateY(18px) scale(.995); transition:transform .25s cubic-bezier(.2,.9,.3,1);
+    }
+    .overlay.open .panel{transform:none}
+
+    .panel .panel-head{display:flex; gap:12px; align-items:center}
+    .panel .panel-thumb{width:110px; height:84px; border-radius:8px; background:linear-gradient(135deg,var(--accent),#60a5fa); color:white; display:flex; align-items:center; justify-content:center; font-weight:700}
+    .panel h2{margin:0; font-size:20px}
+    .close{
+      margin-left:auto; background:transparent; border:none; font-size:18px; cursor:pointer; padding:8px; border-radius:8px;
+    }
+
+    .panel .content{margin-top:16px; color:#222; line-height:1.5}
+
+    /* small screens tweaks */
+    @media (max-width:768px){
+      .wrap{grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px}
+      body{padding:24px}
+      .card{padding:14px}
+      .card .thumb{height:120px}
+      .card h3{font-size:16px}
+      .card p{font-size:13px}
+      .panel .panel-head{flex-direction:column; align-items:flex-start; gap:8px}
+      .panel .panel-thumb{display:none}
+    }
+    @media (max-width:480px){
+      .wrap{grid-template-columns:1fr; gap:12px}
+      body{padding:16px}
+      .card{padding:12px}
+      .card .thumb{height:100px; font-size:16px}
+      .card h3{font-size:14px}
+      .card p{font-size:12px}
+      .btn{padding:8px 10px; font-size:14px}
+      .panel{width:98%; padding:14px}
+      .panel h2{font-size:18px}
+      .close{margin-left:0; align-self:flex-end}
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap" id="cards">
+
+    <article class="card" data-id="1">
+      <div class="thumb">BOSS BLACK</div>
+      <h3>BOSS BLACK LIFESTYLE</h3>
+      <p>
+        ANYTHING IS
+        POSSIBLE WITH THE
+        RIGHT MINDSET
+      </p>
+      <!-- <button class="btn open-btn" aria-expanded="false" aria-controls="panel"><a href="black.html">read more</a></button> -->
+      <button><a href="https://pedromazloumian.github.io/WINTER-BLACLK/">read more</a></button>
+
+    </article>
+
+    <article class="card" data-id="2">
+      <div class="thumb">BOSS CAMEL</div>
+      <h3>BOSS IN PURSUIT OF LUXURY</h3>
+      <p>THE
+        PINNACLE
+        OF THE BOSS
+        LIFESTYLE
+      </p>
+       <!-- <button class="btn open-btn" aria-expanded="false" aria-controls="panel"><a href="black.html">read more</a></button> -->
+      <button><a href="https://pedromazloumian.github.io/WINTER-CAMEL/">read more</a></button>
+    </article>
+
+    <article class="card" data-id="3">
+      <div class="thumb">BOSS GREEN</div>
+      <h3>MARKET LAUNCH</h3>
+      <p>Our mission is to inspire individuals to embrace every
+            moment of their dynamic lives,</p>
+       <!-- <button class="btn open-btn" aria-expanded="false" aria-controls="panel"><a href="black.html">read more</a></button> -->
+      <button><a href="https://pedromazloumian.github.io/WINTER-GREEN/">read more</a></button>
+    </article>
+
+    <!-- <img src="Screenshot 2025-11-17 183549.png" alt="" style=""> -->
+        <img src="screenshot.png" alt="" style="">
+
+
+    <article class="card" data-id="4">
+      <div class="thumb">BOSS ORANGE</div>
+      <h3>Winter 25</h3>
+      <p>MARKET
+          LAUNCH
+          BOSS
+          ODANGE.
+        </p>
+      <!-- <button class="btn open-btn" aria-expanded="false" aria-controls="panel"><a href="black.html">read more</a></button> -->
+      <button><a href="https://pedromazloumian.github.io/WINTER-ORANGE/">read more</a></button>
+    </article>
+
+    <article class="card" data-id="5">
+      <div class="thumb">HUGO RED</div>
+      <h3>HUGO</h3>
+      <p>WINTER 25 BIBLE</p>
+       <!-- <button class="btn open-btn" aria-expanded="false" aria-controls="panel"><a href="black.html">read more</a></button> -->
+      <button><a href="https://pedromazloumian.github.io/WINTER-HUGO/">read more</a></button>
+    </article>
+
+    <article class="card" data-id="6">
+      <div class="thumb">STOCK ROOM</div>
+      <h3>Card One</h3>
+      <p>Short intro text that invites the user to expand the card for more details.</p>
+      <button class="btn open-btn" aria-expanded="false" aria-controls="panel">Expand</button>
+    </article>
+
+  </main>
+
+  <!-- overlay / pop-up panel (single reusable panel) -->
+  <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <section class="panel" id="panel" tabindex="-1">
+      <div class="panel-head">
+        <div class="panel-thumb" id="panel-thumb">IMG</div>
+        <div>
+          <h2 id="panel-title">Title</h2>
+          <div id="panel-sub" style="color:var(--muted); font-size:13px; margin-top:6px">Short subtitle</div>
+        </div>
+        <button class="close" id="close" aria-label="Close panel">✕</button>
+      </div>
+      <div class="content" id="panel-content">
+        <p>Full content goes here. This panel is reusable for all cards. It can include long descriptions, images, forms, or other interactive elements.</p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Simple logic: when user clicks any .open-btn, populate and show the overlay panel.
+    const overlay = document.getElementById('overlay');
+    const panel = document.getElementById('panel');
+    const closeBtn = document.getElementById('close');
+
+    // example content for each card id
+    const data = {
+      1: {
+        title: 'Card One — Expanded',
+        sub: 'More details about card one',
+        thumb: 'A',
+        content: `<p>This is the expanded content for <strong>Card One</strong>. You can put any HTML here: images, lists, links or even small forms. The panel is keyboard-accessible and closable via Escape.</p><p>Try clicking the close button or pressing Escape to return.</p>`
+      },
+      2: {
+        title: 'Card Two — Expanded',
+        sub: 'Details and extra information',
+        thumb: 'B',
+        content: `<p><em>Card Two</em> contains a different set of details. Reusing a single panel keeps the UI simple and fast.</p><ul><li>Point A</li><li>Point B</li></ul>`
+      },
+      3: {
+        title: 'Card Two — Expanded',
+        sub: 'Details and extra information',
+        thumb: 'B',
+        content: `<p><em>Card Two</em> contains a different set of details. Reusing a single panel keeps the UI simple and fast.</p><ul><li>Point A</li><li>Point B</li></ul>`
+      },
+      4: {
+        title: 'Card Two — Expanded',
+        sub: 'Details and extra information',
+        thumb: 'B',
+        content: `<p><em>Card Two</em> contains a different set of details. Reusing a single panel keeps the UI simple and fast.</p><ul><li>Point A</li><li>Point B</li></ul>`
+      },
+      5: {
+        title: 'Card Two — Expanded',
+        sub: 'Details and extra information',
+        thumb: 'B',
+        content: `<p><em>Card Two</em> contains a he UI simple and fast.</p><ul><li>Point A</li><li>Point B</li></ul>`
+      },
+      6: {
+        title: 'Card Three — Expanded',
+        sub: 'Interactive example',
+        thumb: 'C',
+        content: `<p><strong>Card Three</strong> can include interactive elements — for demo, here is a small sign-up form:</p><form onsubmit="event.preventDefault(); alert('Submitted!')"><label>email: <input required type='email' placeholder='you@example.com'></label> <button style='margin-left:8px;padding:6px 8px;border-radius:8px;border:1px solid #ccc;'>Send</button></form>`
+      }
+    };
+
+    // open handler
+    document.querySelectorAll('.open-btn').forEach(btn => {
+      btn.addEventListener('click', (e)=>{
+        const card = e.currentTarget.closest('.card');
+        const id = card.dataset.id;
+        openPanel(id);
+      })
+    });
+
+    function openPanel(id){
+      const item = data[id];
+      if(!item) return;
+      document.getElementById('panel-title').textContent = item.title;
+      document.getElementById('panel-sub').textContent = item.sub;
+      document.getElementById('panel-thumb').textContent = item.thumb;
+      document.getElementById('panel-content').innerHTML = item.content;
+
+      overlay.classList.add('open');
+      overlay.setAttribute('aria-hidden','false');
+      // focus trap: move focus to panel
+      panel.focus();
+
+      // set aria-expanded on the original button for accessibility
+      // find the button belonging to this card and set attributes
+      const btn = document.querySelector(`.card[data-id='${id}'] .open-btn`);
+      if(btn) btn.setAttribute('aria-expanded','true');
+
+      // remember which card opened the panel
+      overlay.dataset.openedFrom = id;
+    }
+
+    function closePanel(){
+      overlay.classList.remove('open');
+      overlay.setAttribute('aria-hidden','true');
+      // restore aria-expanded
+      const id = overlay.dataset.openedFrom;
+      const btn = id ? document.querySelector(`.card[data-id='${id}'] .open-btn`) : null;
+      if(btn) btn.setAttribute('aria-expanded','false');
+      overlay.dataset.openedFrom = '';
+      // return focus to the button (if exists)
+      if(btn) btn.focus();
+    }
+
+    closeBtn.addEventListener('click', closePanel);
+    overlay.addEventListener('click', (e)=>{
+      if(e.target === overlay) closePanel(); // click on backdrop
+    });
+
+    // keyboard: Escape to close
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape' && overlay.classList.contains('open')) closePanel();
+    });
+
+    // small enhancement: open via keyboard on cards (Enter key when focused)
+    document.querySelectorAll('.card').forEach(card => {
+      card.setAttribute('tabindex', '0');
+      card.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter' || e.key === ' ') {
+          const id = card.dataset.id;
+          openPanel(id);
+          e.preventDefault();
+        }
+      })
+    });
+  </script>
+</body>
+</html>
